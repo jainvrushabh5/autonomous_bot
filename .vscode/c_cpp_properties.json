@@ -1,0 +1,39 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/rushabh/ros2_ws/install/rplidar_ros/include/**",
+        "/home/rushabh/ros2_ws/install/pylon_ros2_camera_component/include/**",
+        "/home/rushabh/ros2_ws/install/pylon_ros2_camera_interfaces/include/**",
+        "/home/rushabh/ros2_ws/install/livox_sdk_vendor/include/**",
+        "/home/rushabh/ros2_ws/install/livox_interfaces/include/**",
+        "/home/rushabh/ros2_ws/install/imu_filter_madgwick/include/**",
+        "/home/rushabh/ros2_ws/install/imu_complementary_filter/include/**",
+        "/home/rushabh/ros2_ws/install/image_transport/include/**",
+        "/home/rushabh/ros2_ws/install/camera_info_manager/include/**",
+        "/home/rushabh/ros2_ws/install/camera_calibration_parsers/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/rushabh/ros2_ws/src/autonomous_bot/include/**",
+        "/home/rushabh/ros2_ws/src/drishti_dart_camera/include/**",
+        "/home/rushabh/ros2_ws/src/imu_tools/imu_complementary_filter/include/**",
+        "/home/rushabh/ros2_ws/src/imu_tools/imu_filter_madgwick/include/**",
+        "/home/rushabh/ros2_ws/src/pylon_ros2_camera/image_common/camera_calibration_parsers/include/**",
+        "/home/rushabh/ros2_ws/src/pylon_ros2_camera/image_common/camera_info_manager/include/**",
+        "/home/rushabh/ros2_ws/src/pylon_ros2_camera/image_common/image_transport/include/**",
+        "/home/rushabh/ros2_ws/src/pylon_ros2_camera/pylon_ros2_camera_component/include/**",
+        "/home/rushabh/ros2_ws/src/rplidar_ros2/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

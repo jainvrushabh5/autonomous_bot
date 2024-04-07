@@ -1,0 +1,18 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/rushabh/ros2_ws/install/pylon_ros2_camera_interfaces/local/lib/python3.10/dist-packages",
+        "/home/rushabh/ros2_ws/install/package1/lib/python3.10/site-packages",
+        "/home/rushabh/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages",
+        "/home/rushabh/ros2_ws/install/livox_interfaces/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/rushabh/ros2_ws/install/pylon_ros2_camera_interfaces/local/lib/python3.10/dist-packages",
+        "/home/rushabh/ros2_ws/install/package1/lib/python3.10/site-packages",
+        "/home/rushabh/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages",
+        "/home/rushabh/ros2_ws/install/livox_interfaces/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
