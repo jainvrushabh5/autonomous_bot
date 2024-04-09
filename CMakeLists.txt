@@ -24,8 +24,5 @@ if(BUILD_TESTING)
 endif()
 
 
-install(
-  DIRECTORY description launch 
-  DESTINATION share/${PROJECT_NAME}
-)
+install( DIRECTORY launch config DESTINATION share/${PROJECT_NAME}/ )
 ament_package()

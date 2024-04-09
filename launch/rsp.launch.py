@@ -10,7 +10,7 @@ from launch_ros.actions import Node
 import xacro
 
 def generate_launch_description():
-    pkg_path = get_package_share_directory('amr_bot')
+    pkg_path = get_package_share_directory('autonomous_bot')
     xacro_file = os.path.join(pkg_path, 'description', 'robot.urdf.xacro')
     robot_description_config = xacro.process(xacro_file)
     
@@ -26,7 +26,7 @@ def generate_launch_description():
         parameters=[params]
     )
     
-    # # Create a joint_state_publisher_gui node
+    # Create a joint_state_publisher_gui node
     # node_joint_state_publisher_gui = Node(
     #     package='joint_state_publisher_gui',
     #     executable='joint_state_publisher_gui',
@@ -35,15 +35,14 @@ def generate_launch_description():
     # )
 
     # Launch RViz2 with the hardcoded config file path
-    rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        output='screen',
-        arguments=['-d', rviz_config_path]
-    )
+    # rviz_node = Node(
+    #     package='rviz2',
+    #     executable='rviz2',
+    #     name='rviz2',
+    #     output='screen',
+    #     arguments=['-d', rviz_config_path]
+
 
     return LaunchDescription([
         node_robot_state_publisher,
-        rviz_node
     ])
