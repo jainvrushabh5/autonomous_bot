@@ -6,17 +6,15 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command
+from launch.substitutions import Command , FindExecutable, PathJoinSubstitution, LaunchConfiguration
 from launch.actions import RegisterEventHandler
 from launch.event_handlers import OnProcessStart
+
+from launch_ros.substitutions import FindPackageShare
 
 from launch_ros.actions import Node
 
 def generate_launch_description():
-
-
-    # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
-    # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
 
     package_name='autonomous_bot' #<--- CHANGE ME
 
@@ -25,27 +23,46 @@ def generate_launch_description():
                     get_package_share_directory(package_name),'launch','rsp.launch.py'
                 )]), launch_arguments={'use_sim_time': 'false','use_ros2_control': 'true'}.items()
     )
-   
 
-  
-    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
-
-    controller_params_file = os.path.join(get_package_share_directory(package_name),'config','my_controller.yaml')
-
+    robot_description_content = Command(
+        [
+            PathJoinSubstitution([FindExecutable(name="xacro")]),
+            " ",
+            PathJoinSubstitution(
+                [FindPackageShare("autonomous_bot"), "description", "robot.urdf.xacro"]
+            )
+        ]
+    )
+    robot_description = {"robot_description": robot_description_content}
+    
+    
+    robot_controllers = PathJoinSubstitution(
+        [
+            FindPackageShare("autonomous_bot"),
+            "config",
+            "my_controller.yaml",
+        ]
+    )
+    
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[{'robot_description': robot_description},
-                    controller_params_file]
+        parameters=[robot_description,
+                    robot_controllers],
+        output="both",
+        remappings=[
+            ("~/robot_description", "/robot_description"),
+        ],
     )
-
     delayed_controller_manager = TimerAction(period=3.0, actions=[controller_manager])
 
     diff_drive_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["diff_cont"],
+        name="diff_drive_node",
+        arguments=["diff_cont","--controller-manager","/controller_manager"],
     )
+
 
     delayed_diff_drive_spawner = RegisterEventHandler(
         event_handler=OnProcessStart(
@@ -57,7 +74,8 @@ def generate_launch_description():
     joint_broad_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_broad"],
+        name="joint_board_node",
+        arguments=["joint_board", "--controller-manager", "/controller_manager"],
     )
 
     delayed_joint_broad_spawner = RegisterEventHandler(

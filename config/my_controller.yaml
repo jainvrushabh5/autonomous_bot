@@ -2,20 +2,21 @@ controller_manager:
   ros__parameters:
     
     
-    update_rate: 50.0
+    update_rate: 30
     # use_sim_time: true
 
-
-    diff_cont:
-      type: diff_drive_controller/DiffDriveController
 
     joint_board:
       type: joint_state_broadcaster/JointStateBroadcaster
 
+    diff_cont:
+      type: diff_drive_controller/DiffDriveController
+
+
 diff_cont:
   ros__parameters:
 
-     publish_rate: 50.0
+     publish_rate: 30.0
 
      base_frame_id: base link
 
@@ -25,3 +26,5 @@ diff_cont:
      wheel_radius: 0.05
 
      use_stamped_vel: false
+
+     
