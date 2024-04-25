@@ -31,7 +31,7 @@ def generate_launch_description():
     bringup_dir = get_package_share_directory('nav2_bringup')
 
     namespace = LaunchConfiguration('namespace')
-    map_yaml_file = LaunchConfiguration('map')
+    map_yaml_file = LaunchConfiguration('map.yaml')
     use_sim_time = LaunchConfiguration('use_sim_time')
     autostart = LaunchConfiguration('autostart')
     params_file = LaunchConfiguration('params_file')
@@ -50,7 +50,9 @@ def generate_launch_description():
     # TODO(orduno) Substitute with `PushNodeRemapping`
     #              https://github.com/ros2/launch_ros/issues/56
     remappings = [('/tf', 'tf'),
-                  ('/tf_static', 'tf_static')]
+                  ('/tf_static', 'tf_static'),
+                   ('/cmd_vel','/diff_cont/cmd_vel_unstamped')]
+
 
     # Create our own temporary YAML files that include substitutions
     param_substitutions = {
@@ -75,7 +77,7 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        description='Full path to map yaml file to load')
+        description='Full path to the ROS2 parameters file to use for all launched nodes')
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
         'use_sim_time',
